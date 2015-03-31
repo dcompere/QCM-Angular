@@ -1,0 +1,9 @@
+<div class="container">
+	<div class="bloc_list_questionnaire">
+		<a data-ng-href="Questionnaire/{{questionnaire.id}}" class="no_link_underline" data-ng-repeat="questionnaire in data.questionnaires" id="{{questionnaire.id}}" data-ng-click="idQuestionnaire = questionnaire.id">
+			<div class="bloc_questionnaire">
+				<span>{{questionnaire.libelle}}</span>
+			</div>
+		</a>
+	</div>
+</div>

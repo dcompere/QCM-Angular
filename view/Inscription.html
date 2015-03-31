@@ -1,0 +1,16 @@
+<form class="form_inscription">
+	<img src="ressources/user.png" alt="logo" />
+					
+	<input autofocus type="text" id="nom" data-ng-model="User.nom" name="nom" required="required" placeholder="Nom" maxlength="30" />
+	
+	<input type="text" id="prenom" name="prenom" data-ng-model="User.prenom" required="required" placeholder="Prénom" maxlength="30" />
+	
+	<input type="email" id="mail" name="mail" data-ng-model="User.mail" required="required" placeholder="Email" maxlength="255" />
+	
+	<input type="password" id="password" name="password" data-ng-model="User.password" required="required" placeholder="Mot de passe" maxlength="30" />
+	
+	<!-- <input type="password" id="conf_password" name="conf_password" required="required" placeholder="Confirmation Mot de passe" maxlength="30" />-->
+	
+	<input type="submit" id="inscription" name="inscription" value="Inscription" data-ng-click="addUser()"/>
+
+</form>

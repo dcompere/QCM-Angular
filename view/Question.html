@@ -1,0 +1,16 @@
+<div class="main_bloc_question">
+	<h1>{{data.questionnaire.libelle}}</h1>
+	
+	<div class="clear_space"></div>	
+	
+	<div class="bloc_question" data-ng-repeat="question in data.questions">
+		<div class="question">{{question.libelle}}</div>
+		<div class="bloc_reponse">
+			<div class="reponse" data-ng-repeat="reponse in question.reponses">
+				<input type="checkbox" name="{{'q' + question.id + 'rep' + reponse.id}}" id="{{'q' + question.id + 'rep' + reponse.id}}" />
+				<label for="{{'q' + question.id + 'rep' + reponse.id}}" >{{reponse.libelle}}</label>
+			</div>
+		</div>
+	</div>
+	
+</div>

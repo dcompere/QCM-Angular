@@ -1,0 +1,14 @@
+<form class="form_connexion">
+	<img src="ressources/user.png" alt="logo" />
+					
+	<input autofocus type="email" id="mail" name="mail" data-ng-model="User.mail" required="required" placeholder="Identifiant" maxlength="30" />
+
+	<input type="password" id="password" name="password" data-ng-model="User.password" required="required" placeholder="Mot de passe" maxlength="30" />
+
+	<input type="submit" id="connection" name="connection" value="Connexion" data-ng-click="connectUser()"/>
+	
+</form>
+
+<input type="button" value="disconnect" data-ng-click="disconnectUser()"/>
+
+<input type="button" value="check" data-ng-click="checkUser()"/>
