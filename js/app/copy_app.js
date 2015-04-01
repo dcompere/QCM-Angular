@@ -2,7 +2,7 @@
 var app = angular.module("qcmApp", ["ngResource", "ngRoute", "ngCookies"]).
 config(['$routeProvider', '$locationProvider', '$httpProvider', require("./../config/routing")]).
 factory("config", require("./../config/configFactory")).
-service("user",["$scope","$cookieStore","rest", require("./../service/user")).
+service("config",["$http","$resource","$location","config","$sce", require("./../service/user")).
 service("rest",["$http","$resource","$location","config","$sce", require("./../services/rest")]);
 
 app.controller("QuestionsController", ["$scope","rest","$routeParams", function($scope,rest,$routeParams){
@@ -24,22 +24,43 @@ app.controller("QuestionnairesController", ["$scope","rest",function($scope,rest
 	rest.getAll($scope.data, "questionnaires",undefined,"questionnaires");
 }]);
 
-app.controller("InscriptionController", ["$scope","user",function($scope,user){
-	user.insertUser($scope);
+app.controller("InscriptionController", ["$scope","rest",function($scope,rest){
+	$scope.User = {};
+	var data = {posted: $scope.User};
+	$scope.addUser = function(){
+		rest.postUser(data, "Users/add",function(result){
+			console.log(result);
+		});
+	}
 }]);
 
-app.controller("ConnexionController", ["$scope","user",function($scope,user){
+app.controller("ConnexionController", ["$cookieStore","$scope","rest",function($cookieStore,$scope,rest){
 	$scope.User = {};
 	var data = {posted: $scope.User};
 	$scope.connectUser = function(){
-		user.connect($scope);
+		rest.postUser(data, "Users/connect", function(user){
+			if(user.connected){
+				console.log("Connecté");
+				$cookieStore.put("user",user.token);
+			}else{
+				console.log("Non connecté");
+			}
+		});
 	}
 	
 	$scope.disconnectUser = function(){
-		user.disconnect($scope);
+		$scope.value = {};
+		rest.get($scope.value, "Users/disconnect", function(result){
+			console.log(result);
+			console.log($scope.value);
+		});
 	}
 	
 	$scope.checkUser = function(){
-		user.check($scope);
+		$scope.value = {};
+		rest.get($scope.value, "Users/check", function(result){
+			console.log(result);
+			console.log($scope.value);
+		});
 	}
 }]);
